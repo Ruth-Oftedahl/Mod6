@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Info</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="styles/custom.css" rel="stylesheet" type="text/css">
+
+ <!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<!-- Include the jQuery library -->
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	 <!-- Include the jQuery Mobile library -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div data-role="page">
+		<!-- /header -->
+		<div data-role="header">
+<a href="index.html">Home</a>
+
+<!-- Navigation to other pages  -->
+  	<h1> Please fill out Form</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="dogs.html">Dogs</a></li>
+					<li><a href="kids.html">Kids 1st Pet</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+	<!-- /form for name and email -->
+			<div data-role="main" class="ui-content">
+
+<form id="contactForm" action="" method="POST">
+  <div class="ui-field-contain">
+	<label for="fname">First Name:</label>
+	<input type="text" name="fname" id="fname">
+  </div>
+  <div class="ui-field-contain">
+	<label for="lname">Last Name:</label>
+	<input type="text" name="lname" id="lname">
+  </div>
+  <div class="ui-field-contain">
+	<label for="eamil">Email Address:</label>
+	<input type="email" name="email" id="email">
+  </div>
+
+<!-- /select menue -->
+  <h4> What pet are you interested in?</h4>
+
+<div class="ui-field-contain">
+  <select name="interpet" id="interpet">
+    <option value="cat">Cat</option>
+    <option value="dog">Dog</option>
+    <option value="hamster">Hamster</option>
+    <option value="lizard">Lizard</option>
+    <option value="fish">Fish</option>
+    <option value="other">Other</option>
+  </select>
+  </div>
+  <!-- /text field with local storage -->
+<h4> What other animal would you like to learn about?</h4>
+  <textarea class="localstorage" placeholder="Type Here" autofocus></textarea>
+
+
+			<input type="submit" Value="Submit Button">
+      <button class="clear">Clear localStorage</button>
+      <button class="empty">Empty localStorage</button>
+
+
+</form>
+
+</div>
+<div data-role="footer" class="ui-bar" data-theme="a">
+  <h4> Module 4 Project &copy; 2019</h4>
+  </div>
+
+
+</body>
+</html>
+<!-- /local storage -->
+<script>
+
+(function() {
+
+	var rasm = document.querySelector('.localstorage');
+
+	function supportsLocalStorage() {
+		return typeof(Storage)!== 'undefined';
+	}
+
+	if (!supportsLocalStorage()) {
+		rasm.value = 'Your browser does not support localStorage.';
+	} else {
+		try {
+			setInterval(function() {
+				localStorage.setItem('autosave', rasm.value);
+			}, 1000);
+		} catch (e) {
+			if (e == QUOTA_EXCEEDED_ERR) {
+				alert('Quota exceeded!');
+			}
+		}
+
+		if (localStorage.getItem('autosave')) {
+			rasm.value = localStorage.getItem('autosave');
+		}
+		document.querySelector('.clear').onclick = function() {
+			rasm.value = '';
+			localStorage.removeItem('autosave');
+		};
+		document.querySelector('.empty').onclick = function() {
+			rasm.value = '';
+			localStorage.clear();
+		};
+	}
+
+})();
+</script>
