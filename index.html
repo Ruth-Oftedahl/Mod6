@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pets</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="styles/custom.css" rel="stylesheet" type="text/css">
+	<!-- ThemeRoller -->
+<link rel="stylesheet" href="themes/project5.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+ <!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<!-- Include the jQuery library -->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	 <!-- Include the jQuery Mobile library -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div data-role="page">
+
+	<!-- nav-Panel -->
+<div data-role="panel" id="myPanel">
+<h2>Navigate to other Pages</h2>
+<ul data-role="listview" data-theme="a">
+<li class="menu"><a href="dogs.html">Dogs</a></li>
+<li class="menu"><a href="kids.html">Kids 1st Pet</a></li>
+
+</ul>
+<p>Close this panel by clicking outside of it, pressing the Esc key, or by swiping.</p>
+</div>
+		<!-- /header -->
+		<div data-role="header">
+<a href="index.html">Home</a>
+<!-- nav-panel-button -->
+<a href="#myPanel" class="ui-btn ui-btn-inline">More Information</a>
+
+<!-- Navigation to other pages  -->
+  	<h1> My Favorite Types Of Family Pets</h1>
+
+
+
+		</div>
+
+		<!-- /content -->
+			<div data-role="main" class="ui-content">
+		<!-- add image of pets -->
+		  <div class="logo"><img src="Images/images1.jpg" width="257" height="196" alt="3pets"style="float: left"/></div>
+			<div class="logo"><img src="Images/images2.jpg" width="349" height="144" alt="all pets"style="float: left"/></div>
+			<div class="logo"><img src="Images/images4.jpg" width="275" height="183" alt="small"style="float: left"/></div>
+</div>
+
+	<!-- /content -->
+			<div data-role="main" class="ui-content">
+
+	<h3> Why choose a family pet</h3>
+
+<!-- This code makes the paragraph -->
+<p>I have so many wonderful memories growing up with a house full of animals. As
+	 it turns out, 62 percent of households in the United States include companion
+	  animals. Dogs are the most popular choice coming in at 39 percent, while
+		cats take a pretty close second at 33 percent. Aside from building great
+		memories, having a pet in the house actually serves some pretty incredible
+		purposes when it comes to the emotional development and even physical health
+		 of kids. Multiple studies point to the positive impact that companion animals have on our kids.</p>
+
+<p>I will go through the many dog breeds that are great family dogs.  I will also
+	 introduce the dogs that my family had had.  I will also go through some great
+	 first pet choices for kids just starting out as well as the other pets that will
+	  take a little more effort, but your kids will love.  </p>
+
+</div>
+<!-- /text field with local storage -->
+<div data-role="main" class="ui-content">
+
+<form id="textarea" action="" method="POST">
+<div class="ui-field-contain">
+
+<h4> What is your favorite Pet?</h4>
+<textarea class="localstorage" placeholder="Input Species" autofocus></textarea>
+
+
+		<input type="submit" Value="Submit Button">
+		<button class="clear">Clear localStorage</button>
+		<button class="empty">Empty localStorage</button>
+	</div>
+	</form>
+
+
+
+<h3> Links to help you on your way</h3>
+<!-- list of links -->
+	<div data-role="content">
+		<ul data-role="listview" data-theme="a">
+			<li><a href="https://www.familycircle.com/family-fun/pets/best-small-pets-for-families/">Best Small Pets for Families</a></li>
+			<li><a href="https://www.petfinder.com/">Pet Finder</a></li>
+			<li><a href="https://www.adoptapet.com/">Adopt a Pet</a></li>
+			<li><a href="https://www.chewy.com/">Chewy.com</a></li>
+
+
+		</ul>
+	</div>
+			<div data-role="footer" class="ui-bar" data-theme="a">
+				<h4> Module 5 Project &copy; 2019</h4>
+				<a href="contact.html">Want to be on the mailing list?</a>
+			</div>
+</div>
+
+	</body>
+</html>
+<!-- /local storage -->
+<script>
+
+(function() {
+
+	var rasm = document.querySelector('.localstorage');
+
+	function supportsLocalStorage() {
+		return typeof(Storage)!== 'undefined';
+	}
+
+	if (!supportsLocalStorage()) {
+		rasm.value = 'Your browser does not support localStorage.';
+	} else {
+		try {
+			setInterval(function() {
+				localStorage.setItem('autosave', rasm.value);
+			}, 1000);
+		} catch (e) {
+			if (e == QUOTA_EXCEEDED_ERR) {
+				alert('Quota exceeded!');
+			}
+		}
+
+		if (localStorage.getItem('autosave')) {
+			rasm.value = localStorage.getItem('autosave');
+		}
+		document.querySelector('.clear').onclick = function() {
+			rasm.value = '';
+			localStorage.removeItem('autosave');
+		};
+		document.querySelector('.empty').onclick = function() {
+			rasm.value = '';
+			localStorage.clear();
+		};
+	}
+
+})();
+</script>
